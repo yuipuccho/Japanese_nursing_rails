@@ -7,4 +7,7 @@ class MastersController < ApplicationController
 
   def delete
   end
+
+  def index
+  end
 end
