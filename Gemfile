@@ -10,6 +10,9 @@ gem 'mysql2', '>= 0.4.4'
 # Serializer
 gem 'active_model_serializers'
 
+# Utils
+gem 'annotate', '~> 3.1.1'
+
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
