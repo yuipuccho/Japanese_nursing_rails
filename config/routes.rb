@@ -1,8 +1,12 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                         new_v1_master GET    /api/v1/masters/new(.:format)                                                            v1/masters#new {:format=>:json}
-#                        edit_v1_master GET    /api/v1/masters/:id/edit(.:format)                                                       v1/masters#edit {:format=>:json}
+#                            v1_masters GET    /api/v1/masters(.:format)                                                                v1/masters#index {:format=>:json}
+#                                       POST   /api/v1/masters(.:format)                                                                v1/masters#create {:format=>:json}
+#                             v1_master GET    /api/v1/masters/:id(.:format)                                                            v1/masters#show {:format=>:json}
+#                                       PATCH  /api/v1/masters/:id(.:format)                                                            v1/masters#update {:format=>:json}
+#                                       PUT    /api/v1/masters/:id(.:format)                                                            v1/masters#update {:format=>:json}
+#                                       DELETE /api/v1/masters/:id(.:format)                                                            v1/masters#destroy {:format=>:json}
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -25,7 +29,7 @@
 Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :masters, only: %i[new edit delete index]
+      resources :masters
     end
   end
 end
