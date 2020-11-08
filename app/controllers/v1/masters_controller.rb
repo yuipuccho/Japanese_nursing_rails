@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 module V1
   class MastersController < ApplicationController
-    def get
+    def show
+      @master = Master.find(params[:id])
+      render json: @master, each_serializer: MastersSerializer
+    rescue StandardError
+      render json: { result: false, message: "masterは存在しません。" }
     end
 
     def create
@@ -25,8 +31,8 @@ module V1
       end
     end
 
-    def delete
-    end
+    # def delete
+    # end
 
     def index
       @masters = Master.all
