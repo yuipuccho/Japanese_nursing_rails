@@ -1,0 +1,13 @@
+ja:
+  masters:
+    show:
+      not_found: masterは存在しません。
+    create:
+      success: masterを作成しました。
+      failed: masterの保存に失敗しました。
+    update:
+      success: masterを更新しました。
+      failed: masterの更新に失敗しました。
+    destroy:
+      success: masterを削除しました。
+      failed: masterの削除に失敗しました。
