@@ -8,3 +8,6 @@ ja:
     update:
       success: masterを更新しました。
       failed: masterの更新に失敗しました。
+    destroy:
+      success: masterを削除しました。
+      failed: masterの削除に失敗しました。

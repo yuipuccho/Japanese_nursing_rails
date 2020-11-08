@@ -33,9 +33,11 @@ module V1
       render json: { result: false, message: t('apis.update_record_not_found') }
     end
 
-    def delete
-      @master = Master.find(params[:id])
-
+    def destroy
+      @master = Master.find(params[:id]).destroy!
+      render json: { result: true, message: t('masters.destroy.success') }
+    rescue StandardError
+      render json: { result: false, message: t('masters.destroy.failed') }
     end
 
     def index
