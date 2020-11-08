@@ -6,7 +6,7 @@ module V1
       master = Master.find(params[:id])
       render json: master, each_serializer: MastersSerializer
     rescue StandardError
-      render json: { result: false, message: "masterは存在しません。" }
+      render json: { result: false, message: t('masters.show.not_found') }
     end
 
     def create
@@ -16,21 +16,21 @@ module V1
         render json: { error: "nameを入力してください。" }
       end
       if master.save
-        render json: { result: true, message: "masterを作成しました。" }
+        render json: { result: true, message: t('masters.create.success') }
       else
-        render json: { result: false, message: "masterの保存に失敗しました。" }
+        render json: { result: false, message: t('masters.create.failed') }
       end
     end
 
     def update
       master = Master.find(params[:id])
       if master.update(master_params)
-        render json: { result: true, message: "masterを更新しました。" }
+        render json: { result: true, message: t('masters.update.success')}
       else
-        render json: { result: false, message: "masterの更新に失敗しました。"}
+        render json: { result: false, message: t('masters.update.failed')}
       end
     rescue StandardError
-      render json: { result: false, message: "更新の対象が見つかりません。" }
+      render json: { result: false, message: t('apis.update_record_not_found') }
     end
 
     def delete

@@ -12,7 +12,7 @@ gem 'active_model_serializers'
 
 # Utils
 gem 'annotate', '~> 3.1.1'
-
+gem 'rails-i18n'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
