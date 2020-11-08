@@ -6,16 +6,23 @@ module V1
     def create
       @master = ::Master.new master_params
       if params[:name].blank?
-        render json: { error: "nameを入力してください" }
+        # TODO modelに移動
+        render json: { error: "nameを入力してください。" }
       end
       if @master.save
-        render json: { result: true, message: "masterを作成しました" }
+        render json: { result: true, message: "masterを作成しました。" }
       else
         render json: { result: false, message: "masterの保存に失敗しました。" }
       end
     end
 
-    def edit
+    def update
+      @master = ::Master.find(params[:id])
+      if @master.update(master_params)
+        render json: { result: true, message: "masterを更新しました。" }
+      else
+        render json: { result: false, message: "masterの更新に失敗しました。"}
+      end
     end
 
     def delete
