@@ -27,6 +27,8 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  # devise mailer
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   scope :api, defaults: { format: :json } do
     namespace :v1 do
       resources :masters, only: %i[index update show destroy create]
