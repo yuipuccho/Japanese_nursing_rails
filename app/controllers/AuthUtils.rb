@@ -1,5 +1,5 @@
 # Custom util auth methods.
-module AuthUtil
+module AuthUtils
   extend ActiveSupport::Concern
 
   included do
