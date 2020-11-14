@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class UnitMaster < ApplicationRecord
+  has_many :word_masters
+
   validates :japanese, presence: true
   validates :vietnamese, presence: true
 end
