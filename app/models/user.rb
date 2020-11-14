@@ -26,4 +26,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :validatable, :trackable,
          authentication_keys: [:login]
+
+  validates :user_name, length: {
+    minimum: 1, maximum: 12
+  }, presence: true
 end
