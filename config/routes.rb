@@ -7,6 +7,8 @@
 #                                       PATCH  /api/v1/masters/:id(.:format)                                                            v1/masters#update {:format=>:json}
 #                                       PUT    /api/v1/masters/:id(.:format)                                                            v1/masters#update {:format=>:json}
 #                                       DELETE /api/v1/masters/:id(.:format)                                                            v1/masters#destroy {:format=>:json}
+#                               v1_user PATCH  /api/v1/users/:id(.:format)                                                              v1/users#update {:format=>:json}
+#                                       PUT    /api/v1/users/:id(.:format)                                                              v1/users#update {:format=>:json}
 #                             v1_signup POST   /api/v1/signup(.:format)                                                                 v1/users#create {:format=>:json}
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
@@ -34,7 +36,8 @@ Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
     namespace :v1 do
       resources :masters, only: %i[index update show destroy create]
-      resource :signup, only: [:create], controller: :users
+      resources :users, only: %i[update]
+      resource :signup, only: %i[create], controller: :users
     end
   end
 end
