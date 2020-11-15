@@ -12,6 +12,9 @@
 #                       v1_unit_masters POST   /api/v1/unit_masters(.:format)                                                           v1/unit_masters#create {:format=>:json}
 #                        v1_unit_master PATCH  /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
 #                                       PUT    /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
+#                       v1_word_masters POST   /api/v1/word_masters(.:format)                                                           v1/word_masters#create {:format=>:json}
+#                        v1_word_master PATCH  /api/v1/word_masters/:id(.:format)                                                       v1/word_masters#update {:format=>:json}
+#                                       PUT    /api/v1/word_masters/:id(.:format)                                                       v1/word_masters#update {:format=>:json}
 #                             v1_signup POST   /api/v1/signup(.:format)                                                                 v1/users#create {:format=>:json}
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
@@ -41,6 +44,7 @@ Rails.application.routes.draw do
       resources :masters, only: %i[index update show destroy create]
       resources :users, only: %i[update]
       resources :unit_masters, only: %i[create update]
+      resources :word_masters, only: %i[create update]
       resource :signup, only: %i[create], controller: :users
     end
   end

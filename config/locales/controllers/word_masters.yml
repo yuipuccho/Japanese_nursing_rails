@@ -1,0 +1,15 @@
+ja:
+  word_masters:
+    show:
+      not_found: masterは存在しません。
+    create:
+      success: 単語を作成しました。
+      failed: 単語の保存に失敗しました。
+      specify_unit_master_id: 単元のIDを指定してください。
+      cannnot_find_unit_master_id: 単元が見つかりません。
+    update:
+      success: 単語を更新しました。
+      failed: 単語の更新に失敗しました。
+    destroy:
+      success: 単語を削除しました。
+      failed: 単語の削除に失敗しました。

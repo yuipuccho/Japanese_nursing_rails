@@ -9,16 +9,16 @@ module V1
     def create
       unit_master = UnitMaster.create unit_master_params
       if unit_master.save
-        render json: { result: true, message: t('masters.create.success') }
+        render json: { result: true, message: t('unit_masters.create.success') }
       else
-        render json: { result: false, message: t('masters.create.failed') }
+        render json: { result: false, message: t('unit_masters.create.failed') }
       end
     end
 
     def update
       unit_master = UnitMaster.find(params[:id])
       unit_master.update! unit_master_params
-      render json: { result: true, message: t('masters.update.success')}
+      render json: { result: true, message: t('unit_masters.update.success')}
     rescue StandardError
       render json: { result: false, message: t('apis.update_record_not_found') }
     end
@@ -26,8 +26,7 @@ module V1
     private
 
     def unit_master_params
-      params.require(:unit_master).permit(:japanese, :vietnamese)
+      params.permit(:japanese, :vietnamese)
     end
-
   end
 end
