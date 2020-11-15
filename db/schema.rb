@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_223054) do
+ActiveRecord::Schema.define(version: 2020_11_14_063044) do
 
   create_table "masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "unit_masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "japanese", null: false
+    t.string "vietnamese", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -36,4 +43,16 @@ ActiveRecord::Schema.define(version: 2020_11_12_223054) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "word_masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "unit_master_id"
+    t.string "furigana"
+    t.string "japanese", null: false
+    t.string "english", null: false
+    t.string "vietnamese", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["unit_master_id"], name: "index_word_masters_on_unit_master_id"
+  end
+
+  add_foreign_key "word_masters", "unit_masters"
 end

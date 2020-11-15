@@ -17,7 +17,7 @@ module AuthUtils
     end
 
     def raise_auth_error!
-      render json: { error: t('devise.failure.unauthenticated') }, status: 401
+      render json: { result: false, error: t('devise.failure.unauthenticated') }, status: 401
     end
 
     def current_user

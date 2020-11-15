@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   include AbstractController::Translation
   include AuthUtils
+  include SerializerUtils
 
   def authenticate_user_from_token!
     auth_token = request.headers['Authorization']

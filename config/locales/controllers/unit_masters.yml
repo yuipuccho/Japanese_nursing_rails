@@ -1,0 +1,13 @@
+ja:
+  unit_masters:
+    show:
+      not_found: 単元は存在しません。
+    create:
+      success: 単元を作成しました。
+      failed: 単元の保存に失敗しました。
+    update:
+      success: 単元を更新しました。
+      failed: 単元の更新に失敗しました。
+    destroy:
+      success: 単元を削除しました。
+      failed: 単元の削除に失敗しました。
