@@ -4,7 +4,7 @@ module V1
 
     def create
       unless params[:unit_master_id]
-        render json: { result: true, message: t('word_masters.create.specify_unit_master_id') }
+        render_failed_json t('word_masters.create.specify_unit_master_id')
       end
       unit_master = UnitMaster.find(params[:unit_master_id])
       word_master = unit_master.word_masters.create(furigana: params[:furigana],
