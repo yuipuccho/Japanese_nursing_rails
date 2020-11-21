@@ -1,0 +1,4 @@
+ja:
+  users:
+    create:
+      failed_user_create: ユーザーの作成に失敗しました

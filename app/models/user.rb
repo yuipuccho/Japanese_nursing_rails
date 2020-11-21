@@ -28,9 +28,13 @@ class User < ApplicationRecord
          :validatable, :trackable,
          authentication_keys: [:login]
 
-  enum role: { anonymous: 0, registered: 1, admin: 2 }
+  enum role: { anonymous: 0, normal: 1, admin: 2 }
 
   validates :user_name, length: {
     minimum: 1, maximum: 12
   }, presence: true
+
+  def add_auth_token
+    self.auth_token = Devise.friendly_token
+  end
 end

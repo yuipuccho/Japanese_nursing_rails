@@ -7,6 +7,7 @@
 #                                       PATCH  /api/v1/masters/:id(.:format)                                                            v1/masters#update {:format=>:json}
 #                                       PUT    /api/v1/masters/:id(.:format)                                                            v1/masters#update {:format=>:json}
 #                                       DELETE /api/v1/masters/:id(.:format)                                                            v1/masters#destroy {:format=>:json}
+#                              v1_users POST   /api/v1/users(.:format)                                                                  v1/users#create {:format=>:json}
 #                               v1_user PATCH  /api/v1/users/:id(.:format)                                                              v1/users#update {:format=>:json}
 #                                       PUT    /api/v1/users/:id(.:format)                                                              v1/users#update {:format=>:json}
 #                       v1_unit_masters POST   /api/v1/unit_masters(.:format)                                                           v1/unit_masters#create {:format=>:json}
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
     namespace :v1 do
       resources :masters, only: %i[index update show destroy create]
-      resources :users, only: %i[update]
+      resources :users, only: %i[create update]
       resources :unit_masters, only: %i[create update]
       resources :word_masters, only: %i[create update]
       resource :signup, only: %i[create], controller: :users
