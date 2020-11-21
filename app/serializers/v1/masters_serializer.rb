@@ -9,14 +9,20 @@
 #
 module V1
   class MastersSerializer < ActiveModel::Serializer
-    attributes :id, :name
+    attributes :result, :message
+    has_many :masters
 
     def result
       true
     end
 
     def message
-      "呼び出しに成功しました。"
+      "取得しました。"
     end
+
+    class MasterSerializer < ActiveModel::Serializer
+      attributes :id, :name, :created_at, :updated_at
+    end
+
   end
 end
