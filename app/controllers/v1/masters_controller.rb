@@ -42,6 +42,7 @@ module V1
 
     def index
       masters = Master.all
+      # TODO: ちゃんと配列で返すようにする
       render json: masters
     end
 
