@@ -4,9 +4,9 @@ module V1
   class MastersController < ApplicationController
     def show
       master = Master.find(params[:id])
-      render json: master, each_serializer: MastersSerializer
+      render json: master, serializer: DefaultSerializer, status: 200
     rescue StandardError
-      render json: { result: false, message: t('masters.show.not_found') }
+      render_failed_json t('masters.show.not_found')
     end
 
     def create
@@ -34,15 +34,15 @@ module V1
     end
 
     def destroy
-      @master = Master.find(params[:id]).destroy!
+      master = Master.find(params[:id]).destroy!
       render json: { result: true, message: t('masters.destroy.success') }
     rescue StandardError
       render json: { result: false, message: t('masters.destroy.failed') }
     end
 
     def index
-      @masters = Master.all
-      render json: @masters, each_serializer: MastersSerializer
+      masters = Master.all
+      render json: masters
     end
 
     private

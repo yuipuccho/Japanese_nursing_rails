@@ -1,3 +1,4 @@
 ja:
   apis:
+    success_get: 取得しました。
     update_record_not_found: 更新の対象が見つかりません。
