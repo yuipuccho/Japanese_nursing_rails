@@ -12,6 +12,7 @@
 #  last_sign_in_ip        :string(255)
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  role                   :integer          default("anonymous")
 #  sign_in_count          :integer          default(0), not null
 #  user_name              :string(255)
 #  created_at             :datetime         not null
@@ -26,6 +27,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :validatable, :trackable,
          authentication_keys: [:login]
+
+  enum role: { anonymous: 0, registered: 1, admin: 2 }
 
   validates :user_name, length: {
     minimum: 1, maximum: 12
