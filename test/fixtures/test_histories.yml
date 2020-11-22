@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: test_histories
+#
+#  id                :bigint           not null, primary key
+#  is_collect_answer :boolean          not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :bigint
+#  word_master_id    :bigint
+#
+# Indexes
+#
+#  index_test_histories_on_user_id         (user_id)
+#  index_test_histories_on_word_master_id  (word_master_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (word_master_id => word_masters.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
