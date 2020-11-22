@@ -31,3 +31,5 @@ test:
 production:
   <<: *default
   database: Japanese_nursing_production
+  username: <%= ENV['USER_NAME'] %>
+  password: <%= ENV['DBSECURE'] %>
