@@ -15,6 +15,7 @@ gem 'annotate', '~> 3.1.1'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'devise-i18n', '~> 1.9.2'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'activerecord-import', '~>1.0.7'
 
 # Authentication
 gem 'devise', '~> 4.7.1'

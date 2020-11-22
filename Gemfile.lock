@@ -50,6 +50,8 @@ GEM
     activerecord (6.0.3.4)
       activemodel (= 6.0.3.4)
       activesupport (= 6.0.3.4)
+    activerecord-import (1.0.7)
+      activerecord (>= 3.2)
     activestorage (6.0.3.4)
       actionpack (= 6.0.3.4)
       activejob (= 6.0.3.4)
@@ -184,6 +186,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activerecord-import (~> 1.0.7)
   annotate (~> 3.1.1)
   bootsnap (>= 1.4.2)
   byebug

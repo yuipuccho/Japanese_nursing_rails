@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_112041) do
   create_table "test_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "word_master_id"
     t.bigint "user_id"
-    t.boolean "is_collect_answer", null: false
+    t.boolean "is_correct_answer", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_test_histories_on_user_id"

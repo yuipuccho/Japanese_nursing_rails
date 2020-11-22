@@ -3,7 +3,7 @@
 # Table name: test_histories
 #
 #  id                :bigint           not null, primary key
-#  is_collect_answer :boolean          not null
+#  is_correct_answer :boolean          default(FALSE), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  user_id           :bigint
@@ -23,5 +23,5 @@ class TestHistory < ApplicationRecord
   belongs_to :user
   belongs_to :word_master
 
-  validates :is_collect_answer, presence: true
+  validates :is_correct_answer, presence: true
 end
