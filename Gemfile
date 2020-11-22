@@ -12,8 +12,14 @@ gem 'active_model_serializers'
 
 # Utils
 gem 'annotate', '~> 3.1.1'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 6.0.0'
+gem 'devise-i18n', '~> 1.9.2'
 gem 'bootsnap', '>= 1.4.2', require: false
+
+# Authentication
+gem 'devise', '~> 4.7.1'
+
+gem 'pg', group: :production
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
