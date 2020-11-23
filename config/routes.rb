@@ -10,9 +10,9 @@
 #                              v1_users POST   /api/v1/users(.:format)                                                                  v1/users#create {:format=>:json}
 #                               v1_user PATCH  /api/v1/users/:id(.:format)                                                              v1/users#update {:format=>:json}
 #                                       PUT    /api/v1/users/:id(.:format)                                                              v1/users#update {:format=>:json}
-#               v1_user_learning_target PATCH  /api/v1/user_learning_targets/:id(.:format)                                              v1/user_learning_targets#update {:format=>:json}
-#                                       PUT    /api/v1/user_learning_targets/:id(.:format)                                              v1/user_learning_targets#update {:format=>:json}
 #              v1_user_learning_targets GET    /api/v1/user_learning_targets(.:format)                                                  v1/user_learning_targets#show {:format=>:json}
+#                                       PATCH  /api/v1/user_learning_targets(.:format)                                                  v1/user_learning_targets#update {:format=>:json}
+#                                       PUT    /api/v1/user_learning_targets(.:format)                                                  v1/user_learning_targets#update {:format=>:json}
 #                       v1_unit_masters POST   /api/v1/unit_masters(.:format)                                                           v1/unit_masters#create {:format=>:json}
 #                        v1_unit_master PATCH  /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
 #                                       PUT    /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
@@ -49,8 +49,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :masters, only: %i[index update show destroy create]
       resources :users, only: %i[create update]
-      resources :user_learning_targets, only: %i[update]
-      resource :user_learning_targets, only: %i[show]
+      resource :user_learning_targets, only: %i[show update]
       resources :unit_masters, only: %i[create update]
       resources :word_masters, only: %i[create update]
       resources :test_histories, only: %i[create]

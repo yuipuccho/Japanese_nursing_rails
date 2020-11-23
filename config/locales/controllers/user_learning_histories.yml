@@ -2,3 +2,6 @@ ja:
   user_learning_targets:
     show:
       failed: 目標の取得に失敗しました。
+    update:
+      success: 目標の更新に成功しました。
+      failed: 目標の更新に失敗しました。
