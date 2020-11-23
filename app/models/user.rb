@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   has_many :test_histories
   has_many :learning_histories
+  has_one :user_learning_target
 
   enum role: { anonymous: 0, normal: 1, admin: 2 }
 

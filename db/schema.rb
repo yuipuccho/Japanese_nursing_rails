@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_013705) do
+ActiveRecord::Schema.define(version: 2020_11_23_021656) do
 
   create_table "learning_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "word_master_id"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_11_23_013705) do
     t.string "vietnamese", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_learning_targets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "target_learning_count", default: 0, null: false
+    t.integer "target_testing_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_learning_targets_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,5 +88,6 @@ ActiveRecord::Schema.define(version: 2020_11_23_013705) do
   add_foreign_key "learning_histories", "word_masters"
   add_foreign_key "test_histories", "users"
   add_foreign_key "test_histories", "word_masters"
+  add_foreign_key "user_learning_targets", "users"
   add_foreign_key "word_masters", "unit_masters"
 end
