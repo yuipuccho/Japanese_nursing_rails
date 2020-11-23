@@ -1,0 +1,5 @@
+ja:
+  learning_histories:
+    create:
+      success: 学習履歴の保存に成功しました。
+      failed: 学習履歴の保存に失敗しました。

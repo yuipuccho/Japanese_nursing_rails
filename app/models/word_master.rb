@@ -21,6 +21,7 @@
 #
 class WordMaster < ApplicationRecord
   has_many :test_histories
+  has_many :learning_histories
   belongs_to :unit_master
 
   validates :english, presence: true
