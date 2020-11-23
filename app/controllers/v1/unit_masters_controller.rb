@@ -23,6 +23,11 @@ module V1
       render json: { result: false, message: t('apis.update_record_not_found') }
     end
 
+    def index
+      @unit_masters = UnitMaster.all
+      render 'api/v1/unit_masters/index', handlers: 'jbuilder'
+    end
+
     private
 
     def unit_master_params

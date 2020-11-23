@@ -9,6 +9,7 @@ gem 'mysql2', '>= 0.4.4'
 
 # Serializer
 gem 'active_model_serializers'
+gem 'jbuilder', '~> 2.10.1'
 
 # Utils
 gem 'annotate', '~> 3.1.1'
