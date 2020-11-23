@@ -17,7 +17,8 @@
 #                                       POST   /api/v1/unit_masters(.:format)                                                           v1/unit_masters#create {:format=>:json}
 #                        v1_unit_master PATCH  /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
 #                                       PUT    /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
-#                       v1_word_masters POST   /api/v1/word_masters(.:format)                                                           v1/word_masters#create {:format=>:json}
+#                       v1_word_masters GET    /api/v1/word_masters(.:format)                                                           v1/word_masters#index {:format=>:json}
+#                                       POST   /api/v1/word_masters(.:format)                                                           v1/word_masters#create {:format=>:json}
 #                        v1_word_master PATCH  /api/v1/word_masters/:id(.:format)                                                       v1/word_masters#update {:format=>:json}
 #                                       PUT    /api/v1/word_masters/:id(.:format)                                                       v1/word_masters#update {:format=>:json}
 #                     v1_test_histories POST   /api/v1/test_histories(.:format)                                                         v1/test_histories#create {:format=>:json}
@@ -52,7 +53,7 @@ Rails.application.routes.draw do
       resources :users, only: %i[create update]
       resource :user_learning_targets, only: %i[show update]
       resources :unit_masters, only: %i[create update index]
-      resources :word_masters, only: %i[create update]
+      resources :word_masters, only: %i[create update index]
       resources :test_histories, only: %i[create]
       resources :learning_histories, only: %i[create]
       resource :signup, only: %i[create], controller: :users

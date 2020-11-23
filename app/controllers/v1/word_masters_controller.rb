@@ -25,6 +25,11 @@ module V1
       render_failed_json t('word_masters.update.failed')
     end
 
+    def index
+      @word_masters = WordMaster.where(unit_master_id: params[:unit_master_id])
+      render 'api/v1/word_masters/index', handlers: 'jbuilder'
+    end
+
     private
 
     def word_master_params
