@@ -6,7 +6,6 @@ module Logic
       targets.each do |id|
         tmp << TestHistory.new(user_id: current_user_id, word_master_id: id, is_correct_answer: is_correct_answer)
       end
-
       TestHistory.import tmp
     end
 

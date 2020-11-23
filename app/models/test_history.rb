@@ -22,6 +22,4 @@
 class TestHistory < ApplicationRecord
   belongs_to :user
   belongs_to :word_master
-
-  validates :is_correct_answer, presence: true
 end
