@@ -13,7 +13,8 @@
 #              v1_user_learning_targets GET    /api/v1/user_learning_targets(.:format)                                                  v1/user_learning_targets#show {:format=>:json}
 #                                       PATCH  /api/v1/user_learning_targets(.:format)                                                  v1/user_learning_targets#update {:format=>:json}
 #                                       PUT    /api/v1/user_learning_targets(.:format)                                                  v1/user_learning_targets#update {:format=>:json}
-#                       v1_unit_masters POST   /api/v1/unit_masters(.:format)                                                           v1/unit_masters#create {:format=>:json}
+#                       v1_unit_masters GET    /api/v1/unit_masters(.:format)                                                           v1/unit_masters#index {:format=>:json}
+#                                       POST   /api/v1/unit_masters(.:format)                                                           v1/unit_masters#create {:format=>:json}
 #                        v1_unit_master PATCH  /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
 #                                       PUT    /api/v1/unit_masters/:id(.:format)                                                       v1/unit_masters#update {:format=>:json}
 #                       v1_word_masters POST   /api/v1/word_masters(.:format)                                                           v1/word_masters#create {:format=>:json}
@@ -50,7 +51,7 @@ Rails.application.routes.draw do
       resources :masters, only: %i[index update show destroy create]
       resources :users, only: %i[create update]
       resource :user_learning_targets, only: %i[show update]
-      resources :unit_masters, only: %i[create update]
+      resources :unit_masters, only: %i[create update index]
       resources :word_masters, only: %i[create update]
       resources :test_histories, only: %i[create]
       resources :learning_histories, only: %i[create]
