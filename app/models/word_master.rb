@@ -20,6 +20,7 @@
 #  fk_rails_...  (unit_master_id => unit_masters.id)
 #
 class WordMaster < ApplicationRecord
+  has_many :test_histories
   belongs_to :unit_master
 
   validates :english, presence: true

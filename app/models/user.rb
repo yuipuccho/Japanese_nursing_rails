@@ -28,6 +28,8 @@ class User < ApplicationRecord
          :validatable, :trackable,
          authentication_keys: [:login]
 
+  has_many :test_histories
+
   enum role: { anonymous: 0, normal: 1, admin: 2 }
 
   validates :user_name, length: {

@@ -1,0 +1,5 @@
+ja:
+  test_histories:
+    create:
+      success: テスト履歴の保存に成功しました。
+      failed: テスト履歴の保存に失敗しました。
