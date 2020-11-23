@@ -19,4 +19,9 @@
 #
 class UserLearningTarget < ApplicationRecord
   belongs_to :user
+
+  validates :target_learning_count,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10000 }
+  validates :target_testing_count,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10000 }
 end
