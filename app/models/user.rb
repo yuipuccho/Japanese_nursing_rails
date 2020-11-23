@@ -29,6 +29,7 @@ class User < ApplicationRecord
          authentication_keys: [:login]
 
   has_many :test_histories
+  has_many :learning_histories
 
   enum role: { anonymous: 0, normal: 1, admin: 2 }
 

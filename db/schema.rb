@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_21_112041) do
+ActiveRecord::Schema.define(version: 2020_11_23_013705) do
+
+  create_table "learning_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "word_master_id"
+    t.bigint "user_id"
+    t.boolean "is_remember", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_learning_histories_on_user_id"
+    t.index ["word_master_id"], name: "index_learning_histories_on_word_master_id"
+  end
 
   create_table "masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +75,8 @@ ActiveRecord::Schema.define(version: 2020_11_21_112041) do
     t.index ["unit_master_id"], name: "index_word_masters_on_unit_master_id"
   end
 
+  add_foreign_key "learning_histories", "users"
+  add_foreign_key "learning_histories", "word_masters"
   add_foreign_key "test_histories", "users"
   add_foreign_key "test_histories", "word_masters"
   add_foreign_key "word_masters", "unit_masters"
