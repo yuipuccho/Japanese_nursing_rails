@@ -22,4 +22,6 @@
 class TestHistory < ApplicationRecord
   belongs_to :user
   belongs_to :word_master
+
+  scope :created_today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
 end
