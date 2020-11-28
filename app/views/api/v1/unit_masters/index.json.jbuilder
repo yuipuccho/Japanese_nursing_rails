@@ -6,5 +6,6 @@ json.unit_masters @unit_masters do |unit_master|
   json.vietnamese unit_master.vietnamese
   json.created_at unit_master.created_at
   json.updated_at unit_master.updated_at
+  json.word_count unit_master.word_count
 end
 json.total_count @unit_masters.count
