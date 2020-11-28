@@ -20,9 +20,13 @@
 #  fk_rails_...  (unit_master_id => unit_masters.id)
 #
 class WordMaster < ApplicationRecord
+  include ModelLogic::WordMaster
+
   has_many :test_histories
   has_many :learning_histories
   belongs_to :unit_master
+
+  before_create :update_word_master_count!
 
   validates :english, presence: true
   validates :japanese, presence: true
