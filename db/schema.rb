@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_021656) do
+ActiveRecord::Schema.define(version: 2020_11_28_025556) do
 
   create_table "learning_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "word_master_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_11_23_021656) do
     t.string "vietnamese", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "word_count", default: 0, null: false
   end
 
   create_table "user_learning_targets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

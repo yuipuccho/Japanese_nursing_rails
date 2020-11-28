@@ -24,7 +24,14 @@ class WordMaster < ApplicationRecord
   has_many :learning_histories
   belongs_to :unit_master
 
+  before_create :update_word_master_count!
+
   validates :english, presence: true
   validates :japanese, presence: true
   validates :vietnamese, presence: true
+
+  def update_word_master_count!
+    unit_master = UnitMaster.find(unit_master_id)
+    unit_master.increment!(:word_count)
+  end
 end
