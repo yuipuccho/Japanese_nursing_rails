@@ -27,6 +27,7 @@ module V1
 
     def index
       @word_masters = WordMaster.where(unit_master_id: params[:unit_master_id])
+      @learned_history_ids = current_user.learning_histories.pluck(:word_master_id).uniq.map(&:to_s)
       render 'api/v1/word_masters/index', handlers: 'jbuilder'
     end
 

@@ -9,5 +9,6 @@ json.word_masters @word_masters do |word_master|
   json.vietnamese word_master.vietnamese
   json.created_at word_master.created_at
   json.updated_at word_master.updated_at
+  json.is_learned @learned_history_ids.include? word_master.id.to_s
 end
 json.total_count @word_masters.count
