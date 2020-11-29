@@ -7,5 +7,6 @@ json.unit_masters @unit_masters do |unit_master|
   json.created_at unit_master.created_at
   json.updated_at unit_master.updated_at
   json.word_count unit_master.word_count
+  json.memorized_word_count unit_master.memorized_word_count current_user
 end
 json.total_count @unit_masters.count

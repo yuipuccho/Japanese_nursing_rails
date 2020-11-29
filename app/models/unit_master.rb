@@ -14,4 +14,10 @@ class UnitMaster < ApplicationRecord
 
   validates :japanese, presence: true
   validates :vietnamese, presence: true
+
+  def memorized_word_count(current_user)
+    learning_histories = word_masters.pluck(:id).uniq
+    learned_word_ids = current_user.learning_histories.is_remembered.pluck(:word_master_id).uniq
+    (learned_word_ids & learning_histories).count
+  end
 end
