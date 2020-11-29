@@ -25,6 +25,7 @@
 #                 v1_learning_histories POST   /api/v1/learning_histories(.:format)                                                     v1/learning_histories#create {:format=>:json}
 #                             v1_signup POST   /api/v1/signup(.:format)                                                                 v1/users#create {:format=>:json}
 #                           v1_activity GET    /api/v1/activity(.:format)                                                               v1/activities#index {:format=>:json}
+#              v1_test_histories_status GET    /api/v1/test_histories/status(.:format)                                                  v1/test_histories#status {:format=>:json}
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
       resources :learning_histories, only: %i[create]
       resource :signup, only: %i[create], controller: :users
       get 'activity' => 'activities#index'
+      get 'test_histories/status' => 'test_histories#status'
     end
   end
 end
