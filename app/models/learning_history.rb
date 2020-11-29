@@ -24,4 +24,5 @@ class LearningHistory < ApplicationRecord
   belongs_to :word_master
 
   scope :created_today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :is_remembered, -> { where(is_remember: true) }
 end
