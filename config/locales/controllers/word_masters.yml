@@ -13,3 +13,6 @@ ja:
     destroy:
       success: 単語を削除しました。
       failed: 単語の削除に失敗しました。
+    test:
+      question_range_error: 出題範囲を指定してください。
+      invalid_question_range_error: 正常な出題範囲を指定してください。

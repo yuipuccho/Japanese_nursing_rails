@@ -2,6 +2,8 @@ module V1
   class WordMastersController < ApplicationController
     before_action :authenticated!
 
+    include Logic::WordMasters
+
     def create
       unless params[:unit_master_id]
         render_failed_json t('word_masters.create.specify_unit_master_id')
@@ -31,10 +33,23 @@ module V1
       render 'api/v1/word_masters/index', handlers: 'jbuilder'
     end
 
+    def test
+      unless params[:question_range]
+        render_failed_json t('word_masters.test.question_range_error')
+        return
+      end
+      unless (0..2).cover?(params[:question_range].to_i)
+        render_failed_json t('word_masters.test.invalid_question_range_error')
+        return
+      end
+      render 'api/v1/word_masters/test', handlers: 'jbuilder'
+    end
+
     private
 
     def word_master_params
       params.permit(:furigana, :japanese, :vietnamese, :english)
     end
+
   end
 end
