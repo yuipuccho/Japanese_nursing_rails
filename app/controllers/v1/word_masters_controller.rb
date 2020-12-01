@@ -43,18 +43,30 @@ module V1
         return
       end
 
-      tmp = []
+      @tests = []
       limit = params[:limit] || 5
       test_histories = nil
       case params[:question_range].to_i
       when 0 then
         word_masters = WordMaster.get_random_words(limit)
-        
+        dummy_word = WordMaster.all.shuffle
+        word_masters.each do |word|
+          dummies = dummy_word.sample(3)
+          @tests << {
+            japanese: word.japanese,
+            furigana: word.furigana,
+            vietnamese: word.vietnamese,
+            dummy_vietnamese_1: dummies[0].vietnamese,
+            dummy_vietnamese_2: dummies[1].vietnamese,
+            dummy_vietnamese_3: dummies[2].vietnamese
+          }
+        end
       when 1 then
       when 2 then
       else
         # type code here
       end
+      binding.pry
       render 'api/v1/word_masters/test', handlers: 'jbuilder'
     end
 
