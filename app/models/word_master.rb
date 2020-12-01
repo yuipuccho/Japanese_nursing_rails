@@ -30,6 +30,10 @@ class WordMaster < ApplicationRecord
   validates :japanese, presence: true
   validates :vietnamese, presence: true
 
+  scope :get_random_words, lambda { |num|
+    order('RAND()').limit(num)
+  }
+
   def update_word_master_count!
     unit_master = UnitMaster.find(unit_master_id)
     unit_master.increment!(:word_count)

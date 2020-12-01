@@ -42,6 +42,19 @@ module V1
         render_failed_json t('word_masters.test.invalid_question_range_error')
         return
       end
+
+      tmp = []
+      limit = params[:limit] || 5
+      test_histories = nil
+      case params[:question_range].to_i
+      when 0 then
+        word_masters = WordMaster.get_random_words(limit)
+        
+      when 1 then
+      when 2 then
+      else
+        # type code here
+      end
       render 'api/v1/word_masters/test', handlers: 'jbuilder'
     end
 
