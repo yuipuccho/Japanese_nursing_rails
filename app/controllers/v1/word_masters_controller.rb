@@ -38,14 +38,9 @@ module V1
         render_failed_json t('word_masters.test.question_range_error')
         return
       end
-      unless (0..2).cover?(params[:question_range].to_i)
-        render_failed_json t('word_masters.test.invalid_question_range_error')
-        return
-      end
 
       @tests = []
       limit = params[:limit] || 5
-      test_histories = nil
       case params[:question_range].to_i
       when 0 then
         word_masters = WordMaster.get_random_words(limit)
@@ -62,11 +57,27 @@ module V1
           }
         end
       when 1 then
+        mistake_ids = current_user.test_histories.mistakes.pluck(:word_master_id).uniq
+        word_masters = WordMaster.where(id: mistake_ids).get_random_words(limit)
+        dummy_word = WordMaster.all.shuffle
+        word_masters.each do |word|
+          dummies = dummy_word.sample(3)
+          @tests << {
+            japanese: word.japanese,
+            furigana: word.furigana,
+            vietnamese: word.vietnamese,
+            dummy_vietnamese_1: dummies[0].vietnamese,
+            dummy_vietnamese_2: dummies[1].vietnamese,
+            dummy_vietnamese_3: dummies[2].vietnamese
+          }
+        end
       when 2 then
+
       else
-        # type code here
+        render_failed_json t('word_masters.test.invalid_question_range_error')
+        return
       end
-      binding.pry
+
       render 'api/v1/word_masters/test', handlers: 'jbuilder'
     end
 
