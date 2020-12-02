@@ -68,13 +68,18 @@ module V1
         @tests = generate_tests(word_masters, dummy_words)
       when 3 then
         # 苦手 + 未出題
-        correct_words = current_user
-                        .test_histories
-                        .corrects
-                        .pluck(:word_master_id)
-                        .uniq
+        # 処理見直す
+        asked_ids = current_user
+                    .test_histories
+                    .pluck(:word_master_id)
+                    .uniq
+        mistake_ids = current_user
+                      .test_histories
+                      .mistakes
+                      .pluck(:word_master_id)
+                      .uniq
+        word_masters = WordMaster.where.not(id: asked_ids).or(WordMaster.where(id: mistake_ids)).get_random_words(limit)
         dummy_words = WordMaster.all.shuffle
-        word_masters = dummy_words.reject { |w| correct_words.include?(w.id) }
         @tests = generate_tests(word_masters, dummy_words)
       else
         render_failed_json t('word_masters.test.invalid_question_range_error')
