@@ -33,63 +33,54 @@ module V1
       render 'api/v1/word_masters/index', handlers: 'jbuilder'
     end
 
-    # TODO: ロジックへメソッド切り出し
     def test
       unless params[:question_range]
         render_failed_json t('word_masters.test.question_range_error')
         return
       end
 
-      @tests = []
+      @tests = nil
       limit = params[:limit] || 20
       case params[:question_range].to_i
       when 0 then
+        # すべて
         word_masters = WordMaster.get_random_words(limit)
-        dummy_word = WordMaster.all.shuffle
-        word_masters.each do |word|
-          dummies = dummy_word.reject { |w| w.id == word.id }.sample(3)
-          @tests << {
-            id: word.id,
-            japanese: word.japanese,
-            furigana: word.furigana,
-            vietnamese: word.vietnamese,
-            dummy_vietnamese_1: dummies[0].vietnamese,
-            dummy_vietnamese_2: dummies[1].vietnamese,
-            dummy_vietnamese_3: dummies[2].vietnamese
-          }
-        end
+        dummy_words = WordMaster.all.shuffle
+        @tests = generate_tests(word_masters, dummy_words)
       when 1 then
-        mistake_ids = current_user.test_histories.mistakes.pluck(:word_master_id).uniq
+        # 苦手
+        mistake_ids = current_user
+                      .test_histories
+                      .mistakes
+                      .pluck(:word_master_id)
+                      .uniq
         word_masters = WordMaster.where(id: mistake_ids).get_random_words(limit)
-        dummy_word = WordMaster.all.shuffle
-        word_masters.each do |word|
-          dummies = dummy_word.reject { |w| w.id == word.id }.sample(3)
-          @tests << {
-            id: word.id,
-            japanese: word.japanese,
-            furigana: word.furigana,
-            vietnamese: word.vietnamese,
-            dummy_vietnamese_1: dummies[0].vietnamese,
-            dummy_vietnamese_2: dummies[1].vietnamese,
-            dummy_vietnamese_3: dummies[2].vietnamese
-          }
-        end
+        dummy_words = WordMaster.all.shuffle
+        @tests = generate_tests(word_masters, dummy_words)
       when 2 then
-        asked_ids = current_user.test_histories.pluck(:word_master_id).uniq
+        # 未出題
+        asked_ids = current_user
+                    .test_histories
+                    .pluck(:word_master_id)
+                    .uniq
         word_masters = WordMaster.where.not(id: asked_ids).get_random_words(limit)
-        dummy_word = WordMaster.all.shuffle
-        word_masters.each do |word|
-          dummies = dummy_word.reject { |w| w.id == word.id }.sample(3)
-          @tests << {
-            id: word.id,
-            japanese: word.japanese,
-            furigana: word.furigana,
-            vietnamese: word.vietnamese,
-            dummy_vietnamese_1: dummies[0].vietnamese,
-            dummy_vietnamese_2: dummies[1].vietnamese,
-            dummy_vietnamese_3: dummies[2].vietnamese
-          }
-        end
+        dummy_words = WordMaster.all.shuffle
+        @tests = generate_tests(word_masters, dummy_words)
+      when 3 then
+        # 苦手 + 未出題
+        # 処理見直す
+        asked_ids = current_user
+                    .test_histories
+                    .pluck(:word_master_id)
+                    .uniq
+        mistake_ids = current_user
+                      .test_histories
+                      .mistakes
+                      .pluck(:word_master_id)
+                      .uniq
+        word_masters = WordMaster.where.not(id: asked_ids).or(WordMaster.where(id: mistake_ids)).get_random_words(limit)
+        dummy_words = WordMaster.all.shuffle
+        @tests = generate_tests(word_masters, dummy_words)
       else
         render_failed_json t('word_masters.test.invalid_question_range_error')
         return
