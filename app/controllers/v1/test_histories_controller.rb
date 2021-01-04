@@ -23,15 +23,13 @@ module V1
       @test_history_correct_word_ids = []
       @test_history_mistake_word_ids = []
       test_histories.each do |test_history|
-        if test_history.is_correct_answer && !@test_history_mistake_word_ids.include?(test_history.word_master_id) && !@test_history_correct_word_ids.include?(test_history.word_master_id)
-          @test_history_correct_word_ids << test_history.word_master_id
-        elsif !test_history.is_correct_answer && !@test_history_correct_word_ids.include?(test_history.word_master_id) && !@test_history_mistake_word_ids.include?(test_history.word_master_id)
-          @test_history_mistake_word_ids << test_history.word_master_id
+        word_id = test_history.word_master_id
+        if test_history.is_correct_answer && !@test_history_mistake_word_ids.include?(word_id) && !@test_history_correct_word_ids.include?(word_id)
+          @test_history_correct_word_ids << word_id
+        elsif !test_history.is_correct_answer && !@test_history_correct_word_ids.include?(word_id) && !@test_history_mistake_word_ids.include?(word_id)
+          @test_history_mistake_word_ids << word_id
         end
       end
-      binding.pry
-      # @test_history_correct_word_ids = test_history.corrects.pluck(:word_master_id).uniq
-      # @test_history_mistake_word_ids = test_history.mistakes.pluck(:word_master_id).uniq
       @unquestioned_word_count = @all_word_count - (@test_history_correct_word_ids | @test_history_mistake_word_ids).count
       render 'api/v1/test_histories/status', handlers: 'jbuilder'
     end
