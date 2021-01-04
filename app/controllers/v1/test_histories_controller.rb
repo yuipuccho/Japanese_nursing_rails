@@ -18,10 +18,21 @@ module V1
     end
 
     def status
-      @all_word_count = UnitMaster.all.pluck(:word_count).sum
-      test_history = current_user.test_histories
-      @test_history_correct_word_ids = test_history.corrects.pluck(:word_master_id).uniq
-      @test_history_mistake_word_ids = test_history.mistakes.pluck(:word_master_id).uniq
+      @all_word_count = UnitMaster.select(:word_count).pluck(:word_count).sum
+      test_histories = current_user.test_histories.desc
+      @test_history_correct_word_ids = []
+      @test_history_mistake_word_ids = []
+      test_histories.each do |test_history|
+        if test_history.is_correct_answer && !@test_history_mistake_word_ids.include?(test_history.word_master_id) && !@test_history_correct_word_ids.include?(test_history.word_master_id)
+          @test_history_correct_word_ids << test_history.word_master_id
+        elsif !test_history.is_correct_answer && !@test_history_mistake_word_ids.include?(test_history.word_master_id)
+          @test_history_mistake_word_ids << test_history.word_master_id
+          @test_history_correct_word_ids.delete(test_history.word_master_id)
+        end
+      end
+      binding.pry
+      # @test_history_correct_word_ids = test_history.corrects.pluck(:word_master_id).uniq
+      # @test_history_mistake_word_ids = test_history.mistakes.pluck(:word_master_id).uniq
       @unquestioned_word_count = @all_word_count - (@test_history_correct_word_ids | @test_history_mistake_word_ids).count
       render 'api/v1/test_histories/status', handlers: 'jbuilder'
     end
