@@ -25,9 +25,8 @@ module V1
       test_histories.each do |test_history|
         if test_history.is_correct_answer && !@test_history_mistake_word_ids.include?(test_history.word_master_id) && !@test_history_correct_word_ids.include?(test_history.word_master_id)
           @test_history_correct_word_ids << test_history.word_master_id
-        elsif !test_history.is_correct_answer && !@test_history_mistake_word_ids.include?(test_history.word_master_id)
+        elsif !test_history.is_correct_answer && !@test_history_correct_word_ids.include?(test_history.word_master_id) && !@test_history_mistake_word_ids.include?(test_history.word_master_id)
           @test_history_mistake_word_ids << test_history.word_master_id
-          @test_history_correct_word_ids.delete(test_history.word_master_id)
         end
       end
       binding.pry

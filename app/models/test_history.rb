@@ -27,5 +27,5 @@ class TestHistory < ApplicationRecord
   scope :one_weeks, -> { where(created_at: 6.days.ago.beginning_of_day...Time.zone.now.end_of_day) }
   scope :corrects, -> { where(is_correct_answer: true) }
   scope :mistakes, -> { where(is_correct_answer: false) }
-  scope :desc, -> { order(id: "ASC") }
+  scope :desc, -> { order(id: "DESC") }
 end
