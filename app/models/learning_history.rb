@@ -26,4 +26,5 @@ class LearningHistory < ApplicationRecord
   scope :created_today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
   scope :is_remembered, -> { where(is_remember: true) }
   scope :one_weeks, -> { where(created_at: 6.days.ago.beginning_of_day...Time.zone.now.end_of_day) }
+  scope :desc, -> { order(id: "DESC") }
 end
